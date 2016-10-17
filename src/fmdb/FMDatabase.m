@@ -1494,3 +1494,18 @@ void FMDBBlockSQLiteCallBackFunction(sqlite3_context *context, int argc, sqlite3
 
 @end
 
+@implementation NSString (SafeSQL)
+
+- (NSString *)safeSqlString
+{
+    char *safeString = sqlite3_mprintf("%q", [self UTF8String]);
+
+    if (safeString)
+    {
+        return [NSString stringWithFormat:@"'%@'", [NSString stringWithUTF8String:safeString]];
+    }
+
+    return @"";
+}
+
+@end

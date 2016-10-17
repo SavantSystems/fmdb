@@ -37,6 +37,12 @@
     #define instancetype id
 #endif
 
+@interface NSString (SafeSQL)
+
+- (NSString *)safeSqlString;
+
+@end
+
 
 typedef int(^FMDBExecuteStatementsCallbackBlock)(NSDictionary *resultsDictionary);
 
